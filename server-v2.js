@@ -276,6 +276,10 @@ function initializeClient() {
         console.log('✅ Client authenticated');
     });
 
+    client.on('auth_failure', (msg) => {
+        console.error('❌ Authentication failed:', msg);
+    });
+
     client.on('disconnected', (reason) => {
         console.log('❌ Client disconnected:', reason);
         isReady = false;
