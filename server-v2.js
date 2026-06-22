@@ -366,6 +366,46 @@ app.get('/api/bot/status', (req, res) => {
     });
 });
 
+app.get('/api/bot/qr', async (req, res) => {
+    try {
+        if (!qrCodeData) {
+            return res.status(404).json({
+                success: false,
+                message: 'QR Code belum tersedia'
+            });
+        }
+
+        const qrImage = await QRCode.toDataURL(qrCodeData);
+
+        res.json({
+            success: true,
+            qr: qrImage
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+});
+
+app.get('/api/bot/qr-image', async (req, res) => {
+    try {
+        if (!qrCodeData) {
+            return res.status(404).send('QR tidak tersedia');
+        }
+
+        const qrBuffer = await QRCode.toBuffer(qrCodeData);
+
+        res.setHeader('Content-Type', 'image/png');
+        res.send(qrBuffer);
+
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
 app.post('/api/upload-pedoman', upload.single('file_pdf'), async (req, res) => {
     try {
         if (!req.file) throw new Error('File PDF tidak dikirim oleh browser.');

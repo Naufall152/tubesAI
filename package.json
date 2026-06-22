@@ -26,6 +26,7 @@
     "multer": "^2.1.1",
     "pdf-parse": "^1.1.1",
     "puppeteer": "^25.1.0",
+    "qrcode": "^1.5.4",
     "qrcode-terminal": "^0.12.0",
     "whatsapp-web.js": "^1.25.0"
   },
