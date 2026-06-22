@@ -6,10 +6,10 @@ const fs = require('fs');
 const path = require('path');
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
+const QRCode = require('qrcode');
 const Groq = require('groq-sdk');
 const RAGEngine = require('./lib/rag');
 const DatasetManager = require('./lib/dataset');
-
 // Tambahan untuk OCR
 const axios = require('axios');
 const FormData = require('form-data');
